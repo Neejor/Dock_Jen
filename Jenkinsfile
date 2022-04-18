@@ -26,12 +26,7 @@ pipeline {
     }
     stage('Test and Build') {
       parallel {
-        stage('Run Tests') {
-          steps {
-              nodejs(nodeJSInstallationName: "node"){
-            sh 'npm run test'}
-          }
-        }
+        
         stage('Create Build Artifacts') {
           steps {
               nodejs(nodeJSInstallationName: "node"){
