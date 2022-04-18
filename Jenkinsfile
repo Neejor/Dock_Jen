@@ -1,7 +1,7 @@
 pipeline {
   agent {
     docker {
-     image 'node:6-alpine'
+     image 'node:16-alpine'
      args '-p 3000:3000'
     }
   }
@@ -11,21 +11,31 @@ pipeline {
     npm_config_cache = 'npm-cache'
   }
   stages {
+      stage('Version') {
+        steps {
+            nodejs(nodeJSInstallationName: "node") {
+                sh 'node -v'
+            }
+        }
+    }
     stage('Install Packages') {
       steps {
-        sh 'npm install'
+          nodejs(nodeJSInstallationName: "node"){
+        sh 'npm install'}
       }
     }
     stage('Test and Build') {
       parallel {
         stage('Run Tests') {
           steps {
-            sh 'npm run test'
+              nodejs(nodeJSInstallationName: "node"){
+            sh 'npm run test'}
           }
         }
         stage('Create Build Artifacts') {
           steps {
-            sh 'npm run build'
+              nodejs(nodeJSInstallationName: "node"){
+            sh 'npm run build'}
           }
         }
       }
