@@ -62,7 +62,7 @@ const Home = () => {
       <div className="HomeContainer">
         <div className="text">
           <h1>We Love</h1>
-          <h1>Delicioso Foods!</h1>
+          <h1>ffff Foods!</h1>
           <div className="btns">
             <ColouredButton text="Explore Menu" />
             <Button variant="outlined">
